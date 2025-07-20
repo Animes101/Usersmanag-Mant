@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+  import { ToastContainer, toast } from 'react-toastify';
+  import { usersContext } from './Context/Users';
 
 import './App.css'
 import Users from './Components/Users'
@@ -35,8 +37,21 @@ function App() {
 
   const [users, setUsers]=useState(usersDami)
 
+  const fildSerchFef=useRef();
+
+   const handleSearch=()=>{
+
+    const searchText=fildSerchFef.current.value;
+
+    const filtered = usersDami.filter(user =>
+      user.name.toLowerCase().includes(searchText)
+    );
+    setUsers(filtered);
+   }
+
 
   const addNewUser=(newUser)=>{
+  toast.success('success fully')
 
     setUsers([...users, newUser])
 
@@ -48,15 +63,18 @@ function App() {
 
 
     setUsers(RemoveUser);
+    toast.error('Delet Succes fully')
   }
 
 
   return (
-    <div>
+    <usersContext.Provider value={{users, setUsers}}>
+      <ToastContainer />
+      <input onChange={handleSearch} ref={fildSerchFef}  type="text" name="" placeholder='Search' id="" />
       <NewUsers addNewUser={addNewUser} />
 
      <Users removeUser={removeUser} users={users} />
-    </div>
+    </usersContext.Provider>
   )
 }
 
