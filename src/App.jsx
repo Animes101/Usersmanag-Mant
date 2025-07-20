@@ -1,34 +1,62 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
+import Users from './Components/Users'
+import NewUsers from './Components/NewUsers'
+
+const usersDami=[
+  {
+    "id": 1,
+    "name": "Animes Barman",
+    "email": "animes@example.com",
+    "username": "animesb",
+    "phone": "01711-123456",
+    "website": "animes.dev"
+  },
+  {
+    "id": 2,
+    "name": "Rahim Uddin",
+    "email": "rahim@example.com",
+    "username": "rahim123",
+    "phone": "01819-654321",
+    "website": "rahimtech.com"
+  },
+  {
+    "id": 3,
+    "name": "Karim Hossain",
+    "email": "karim@example.com",
+    "username": "karimh",
+    "phone": "01912-987654",
+    "website": "karim.codes"
+  }
+]
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [users, setUsers]=useState(usersDami)
+
+
+  const addNewUser=(newUser)=>{
+
+    setUsers([...users, newUser])
+
+  }
+
+  const removeUser=(id)=>{
+
+    const RemoveUser=users.filter((item)=> item.id !== id);
+
+
+    setUsers(RemoveUser);
+  }
+
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <NewUsers addNewUser={addNewUser} />
+
+     <Users removeUser={removeUser} users={users} />
+    </div>
   )
 }
 
