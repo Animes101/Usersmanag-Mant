@@ -49,31 +49,13 @@ function App() {
     setUsers(filtered);
    }
 
-
-  const addNewUser=(newUser)=>{
-  toast.success('success fully')
-
-    setUsers([...users, newUser])
-
-  }
-
-  const removeUser=(id)=>{
-
-    const RemoveUser=users.filter((item)=> item.id !== id);
-
-
-    setUsers(RemoveUser);
-    toast.error('Delet Succes fully')
-  }
-
-
   return (
-    <usersContext.Provider value={{users, setUsers}}>
+    <usersContext.Provider value={{users, setUsers,toast}}>
       <ToastContainer />
       <input onChange={handleSearch} ref={fildSerchFef}  type="text" name="" placeholder='Search' id="" />
-      <NewUsers addNewUser={addNewUser} />
+      <NewUsers />
 
-     <Users removeUser={removeUser} users={users} />
+     <Users />
     </usersContext.Provider>
   )
 }

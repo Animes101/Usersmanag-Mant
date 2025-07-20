@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import User from './User'
+import { usersContext } from '../Context/Users'
 
-const Users = ({users,removeUser}) => {
+
+const Users = () => {
+  const {users}=useContext(usersContext)
   return (
     <div>
         <h1>Users</h1>
         <div>
-          {users.map((user)=> <User key={user.id} user={user} removeUser={removeUser} />)}
+          {users.map((user)=> <User key={user.id} user={user} />)}
         </div>
     </div>
   )

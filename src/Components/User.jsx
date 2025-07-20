@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { usersContext } from '../Context/Users';
 
-const User = ({user,removeUser}) => {
+const User = ({user}) => {
     const {name,email,username,id,phone,website}=user;
+    const {users,setUsers,toast}=useContext(usersContext)
 
     const handleDelit=(id)=>{
-        removeUser(id)
+
+        const RemoveUser=users.filter((item)=> item.id !== id);
+
+
+            setUsers(RemoveUser);
+            toast.error('Delet Succes fully')
 
     }
   return (
