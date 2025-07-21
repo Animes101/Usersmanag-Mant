@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react'
-  import { ToastContainer, toast } from 'react-toastify';
+import { useEffect, useRef, useState } from 'react'
+  import {toast,ToastContainer} from 'react-toastify';
   import { usersContext } from './Context/Users';
 
 import './App.css'
@@ -35,13 +35,14 @@ const usersDami=[
 
 function App() {
 
-  const [users, setUsers]=useState(usersDami)
+  const [users, setUsers]=useState(usersDami);
+  const [searchText ,setSearchText]=useState('');
 
   const fildSerchFef=useRef();
 
    const handleSearch=()=>{
 
-    const searchText=fildSerchFef.current.value;
+    fildSerchFef.current.value;
 
     const filtered = usersDami.filter(user =>
       user.name.toLowerCase().includes(searchText)
@@ -49,15 +50,21 @@ function App() {
     setUsers(filtered);
    }
 
+   useEffect(()=>{
+
+
+   },[])
+
   return (
     <usersContext.Provider value={{users, setUsers,toast}}>
       <ToastContainer />
-      <input onChange={handleSearch} ref={fildSerchFef}  type="text" name="" placeholder='Search' id="" />
+      <h1 className='user-header'>User Management App </h1>
+      <hr />
       <NewUsers />
-
-     <Users />
+      <input className='search' onChange={handleSearch} ref={fildSerchFef}  type="text" name="" placeholder='Search' id="" />
+      <Users />
     </usersContext.Provider>
   )
 }
 
-export default App
+export default App;

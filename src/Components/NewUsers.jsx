@@ -1,11 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
- import { ToastContainer, toast } from 'react-toastify';
-import { usersContext } from '../Context/Users';
+import './newUsers.css'
+import { useUserContext } from '../Hooks/useContextHooks';
+import { ToastContainer ,toast } from 'react-toastify';
 
-const NewUsers = ({addNewUser}) => {
+const NewUsers = () => {
     const [newUsers, setNewUsers]=useState({name:'', email:'', username:'', phone:'', website:''});
-    const {users ,setUsers, toast}=useContext(usersContext);
+    const {users ,setUsers, toast}=useUserContext();
     const {name,email,username,phone,website}=newUsers;
 
     const  handleChange=(e)=>{
@@ -41,16 +42,16 @@ const NewUsers = ({addNewUser}) => {
       toast.success('Add New Users Success fully')
     }
   return (
-    <div>
+    <div className='new-users'>
+      <ToastContainer />
         <h1>NewUsers</h1>
-        <ToastContainer />
         <form onSubmit={handleSubmit} action="">
             <input onChange={handleChange} value={name}  type="text" name="name" placeholder='Name' id="name" />
             <input onChange={handleChange} value={email}  type="email" name="email" placeholder='Enter Your Email' id="email" />
             <input onChange={handleChange} value={username}  type="text" name="username" placeholder='User Name' id="userName" />
             <input onChange={handleChange}  value={phone} type="number" name="phone" placeholder='Number' id="phone" />
             <input onChange={handleChange}  value={website} type="text" name="website" placeholder='website' id="websit" />
-            <input type="submit" value="Add Users" />
+            <input className='btn' type="submit" value="Add Users" />
         </form>
     </div>
   )

@@ -1,0 +1,26 @@
+.new-users{
+    width:90%;
+    margin:auto
+}
+.new-users h1{
+
+    text-align: center;
+    
+}
+.new-users form input{
+    display: block;
+    padding:5px;
+    width: 50%;
+    margin:10px auto;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    outline: none;
+}
+.new-users form .btn{
+    background:black;
+    color:white;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}

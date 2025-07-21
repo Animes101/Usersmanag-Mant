@@ -1,0 +1,28 @@
+.user-area{
+    background-color: rgb(171, 164, 173);
+    padding:10px;
+    border-radius: 5px;
+}
+.user-area h1{
+    font-size: 30px;
+    font-weight: bold;
+    color:white;
+    text-shadow: 2px 2px 3px black;
+}
+.user-area h3{
+    color:rgb(195, 78, 78);
+    font-size: 20px;
+}
+.user-area h2{
+    color:rgb(39, 112, 228);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.user-area button{
+    width: 100%;
+    background-color: black;
+    font-size: 30px;
+    color:red;
+}
+

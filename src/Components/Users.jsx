@@ -1,18 +1,19 @@
-import React, { useContext } from 'react'
 import User from './User'
-import { usersContext } from '../Context/Users'
+
+
+import './users.css'
+import { useUserContext } from '../Hooks/useContextHooks'
 
 
 const Users = () => {
-  const {users}=useContext(usersContext)
+  const {users}=useUserContext()
   return (
-    <div>
-        <h1>Users</h1>
-        <div>
+    <div className='users-container'>
+        <div className='users-area'>
           {users.map((user)=> <User key={user.id} user={user} />)}
         </div>
     </div>
   )
 }
 
-export default Users
+export default Users;

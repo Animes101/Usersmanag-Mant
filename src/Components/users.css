@@ -1,0 +1,12 @@
+.users-area{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-content: space-between;
+    gap:5px
+}
+
+.users-container{
+    width: 90%;
+    margin:auto
+}
