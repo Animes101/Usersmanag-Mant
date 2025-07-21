@@ -6,7 +6,7 @@ import { ToastContainer ,toast } from 'react-toastify';
 
 const NewUsers = () => {
     const [newUsers, setNewUsers]=useState({name:'', email:'', username:'', phone:'', website:''});
-    const {users ,setUsers, toast}=useUserContext();
+    const {users,dispatch}=useUserContext();
     const {name,email,username,phone,website}=newUsers;
 
     const  handleChange=(e)=>{
@@ -36,8 +36,7 @@ const NewUsers = () => {
         phone,
         website
       }
-
-      setUsers([...users, newUsers])
+      dispatch({type:'add user', payload:newUsers})
       setNewUsers({name:'', email:'',username:'',phone:'',website:''})
       toast.success('Add New Users Success fully')
     }

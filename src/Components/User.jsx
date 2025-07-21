@@ -1,17 +1,15 @@
 
 import './user.css'
 import { useUserContext } from '../Hooks/useContextHooks';
-import { ToastContainer } from 'react-toastify';
+
+import { ToastContainer,toast } from 'react-toastify';
 const User = ({user}) => {
     const {name,email,username,id,phone,website}=user;
-    const {users,setUsers,toast}=useUserContext()
+    const {dispatch}=useUserContext()
 
     const handleDelit=(id)=>{
 
-        const RemoveUser=users.filter((item)=> item.id !== id);
-
-
-            setUsers(RemoveUser);
+            dispatch({ type: 'delete user', payload: id })
             toast.error('Delet Succes fully')
 
     }

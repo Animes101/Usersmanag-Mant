@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useReducer, useRef, useState } from 'react'
   import {toast,ToastContainer} from 'react-toastify';
   import { usersContext } from './Context/Users';
 
@@ -6,7 +6,7 @@ import './App.css'
 import Users from './Components/Users'
 import NewUsers from './Components/NewUsers'
 
-const usersDami=[
+const initialState=[
   {
     "id": 1,
     "name": "Animes Barman",
@@ -33,30 +33,48 @@ const usersDami=[
   }
 ]
 
+const reducer=(users,action)=>{
+
+  switch(action.type){
+
+    case 'add user':
+    return [...users, action.payload]
+
+
+    case 'delete user':
+       return users.filter((item)=> item.id !== action.payload);
+
+       case 'search':
+        return action.payload
+
+       default: 
+       return users;
+    
+
+  }
+
+}
+
 function App() {
 
-  const [users, setUsers]=useState(usersDami);
-  const [searchText ,setSearchText]=useState('');
+  const [users, dispatch] = useReducer(reducer, initialState);
+
 
   const fildSerchFef=useRef();
 
    const handleSearch=()=>{
 
-    fildSerchFef.current.value;
+    const searchText=fildSerchFef.current.value;
 
-    const filtered = usersDami.filter(user =>
+    const filtered = users.filter(user =>
       user.name.toLowerCase().includes(searchText)
     );
-    setUsers(filtered);
+
+    dispatch({type:'search',payload:filtered})
    }
 
-   useEffect(()=>{
-
-
-   },[])
-
   return (
-    <usersContext.Provider value={{users, setUsers,toast}}>
+    <usersContext.Provider value={{users, dispatch}}>
       <ToastContainer />
       <h1 className='user-header'>User Management App </h1>
       <hr />
